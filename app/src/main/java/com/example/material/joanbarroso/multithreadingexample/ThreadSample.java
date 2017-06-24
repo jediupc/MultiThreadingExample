@@ -21,14 +21,11 @@ import butterknife.OnClick;
 public class ThreadSample extends AppCompatActivity {
 
     @Bind(R.id.imageView) ImageView imageView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_sampl);
         ButterKnife.bind(this);
-
-
     }
 
     @OnClick(R.id.threadButton)
@@ -37,7 +34,7 @@ public class ThreadSample extends AppCompatActivity {
     }
     @OnClick(R.id.nextButton)
     public void goNextSample() {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), AsyncTaskExample.class));
     }
 
     private Handler mhHandler = new Handler() {
@@ -51,20 +48,10 @@ public class ThreadSample extends AppCompatActivity {
 
     public void downloadImage(View v) {
         new Thread(new Runnable() {
-            private Bitmap loadImageFromNetwork(String url) {
-                try {
-                    Bitmap bitmap = BitmapFactory
-                            .decodeStream((InputStream) new URL(url)
-                                    .getContent());
-                    return bitmap;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
+
 
         public void run() {
-            final Bitmap bitmap = loadImageFromNetwork("http://jakewharton.github.io/butterknife/static/logo.png");
+            final Bitmap bitmap = Utils.loadImageFromNetwork("http://jakewharton.github.io/butterknife/static/logo.png");
             Message msg = new Message();
             msg.what = 100;
             msg.obj = bitmap;

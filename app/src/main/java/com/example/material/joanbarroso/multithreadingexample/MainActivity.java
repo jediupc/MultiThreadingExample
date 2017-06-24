@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemClick(AdapterView<?> a, View v, int pos, long id) {
-                        // TODO Auto-generated method stub
                         values.remove(pos);
                         adapter.notifyDataSetChanged();
                     }
