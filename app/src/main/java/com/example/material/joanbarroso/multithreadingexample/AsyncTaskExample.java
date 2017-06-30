@@ -22,7 +22,7 @@ public class AsyncTaskExample extends AppCompatActivity {
     Button nextButton;
 
     @OnClick(R.id.threadButton)
-    public void getImagecontent2() {
+    public void getImageContent() {
         new DownloadImageTask().execute();
     }
 
@@ -35,6 +35,16 @@ public class AsyncTaskExample extends AppCompatActivity {
     }
 
     private class DownloadImageTask extends AsyncTask<Void, Void, Bitmap> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
 
         @Override
         protected Bitmap doInBackground(Void... params) {
